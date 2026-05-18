@@ -1,4 +1,4 @@
-### 18th May 2026: "Exposing a functionlity -- MCP server vs Python Library"
+## 18th May 2026: "Exposing a functionlity -- MCP server vs Python Library"
 * This was an important discussion I had with my team mates. E.g. I want to provide a features related to docx handling - text extraction, token count, section detection, etc. Should this be a Python library that consumers import, or an MCP server they call?
   
 * What are the cons with exposing Python library?
@@ -14,7 +14,7 @@
 P.S.: For our use-case, we went ahead with MCP server approach.
 
 
-### 15th March 2026
+## 15th March 2026
 * With agno, I was using AWS DynamoDB (DDB) as Database for different tables that the framework creates internally e.g. session table to store all session data, or memory table to store memories related to a user, etc.
 * But I faced an issue of PutItem operation failing. Digging deeper in it, I found that DDB item has size limit of 400KB. And in my case, that limit was reaching often.
 * Hence I moved to AWS RDS Postgres. Also, Postgres is the recommended DB for production use-cases.
@@ -23,7 +23,7 @@ P.S.: For our use-case, we went ahead with MCP server approach.
   * So to overcome this, I had to run `db._create_all_tables()`
 * P.S. - Do read how postgres handles huge size of dataset.
 
-### 15th Dec 2025
+## 15th Dec 2025
 * I got to know that with `agno` framework, it's possible to stream internal events that agent is going through, like tool call, reasoing, memory updates, etc.
 
 * It'll be interesting for consumers of your solution, to get glimpse of what agent is doing internally before providing you with final response.

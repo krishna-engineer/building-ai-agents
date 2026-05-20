@@ -1,3 +1,10 @@
+## 20th May 2026: "Facade Pattern"
+* Today itself I came across a situation where 2 independent agents (say chat & image-gen) must run standalone, but the chat agent also needs to trigger image generation.
+* The question was how should the chat agent consume the image-gen capability? Here I used Facade Pattern.
+* Facade = expose one simple interface that hides a complex subsystem behind it. The consumer calls a single function and stays blissfully unaware of what happens inside.
+* In my case, the image-gen agent has real internal complexities like model setup, prompt handling, inference, post-processing, error handling. Instead of letting the chat agent import and orchestrate all of that, image-gen exposes one function (say "generate_image") and chat agent imports just that.
+
+
 ## 18th May 2026: "Exposing a functionlity -- MCP server vs Python Library"
 * This was an important discussion I had with my team mates. E.g. I want to provide a features related to docx handling - text extraction, token count, section detection, etc. Should this be a Python library that consumers import, or an MCP server they call?
   

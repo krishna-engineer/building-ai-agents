@@ -1,3 +1,18 @@
+
+## 02nd July 2026: "Sometimes you're bounded by frameworks that you use"
+* Today while integrating Skills in Agno agent, I hit a case where the framework blocked something I needed. Worth writing down as a general lesson, not just a bug.
+* What I wanted: Enable prompt caching  to save cost. Caching is prefix-based — static content at the top of the prompt gets cached, dynamic content should sit at the bottom, otherwise everything below the first dynamic token pays full price.
+* What Agno does: With add_datetime_to_context=True, it assembles the system prompt in a fixed order:
+```
+Custom instructions
+Current datetime ← dynamic
+Skills instructions ← static, large
+Tool schemas ← static
+```
+* Skills block sits after the datetime, which changes every request. So caching breaks exactly where it would have saved the most money.
+* The real problem: No config flag, no override, no hook. The ordering is baked into the SDK. I looked.
+* The lesson (bigger than caching): Every framework makes opinionated choices about things you didn't know were choices. Agno's designers optimized for "fresh context first." I needed to optimize for cost. When priorities diverge and the framework doesn't expose the knob, you're stuck.
+
 ## 20th May 2026: "Facade Pattern"
 * Today itself I came across a situation where 2 independent agents (say chat & image-gen) must run standalone, but the chat agent also needs to trigger image generation.
 * The question was how should the chat agent consume the image-gen capability? Here I used Facade Pattern.
